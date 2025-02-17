@@ -9,12 +9,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     let tareas = [];
 
-    // Obtener tareas desde el servidor
+
     function obtenerTareas() {
-        fetch("tareas.php?nocache=" + new Date().getTime()) // Evita que se use caché
+        fetch("tareas.php?nocache=" + new Date().getTime()) // evita que se use caché
             .then(response => response.json())
             .then(data => {
-                console.log("Tareas obtenidas del servidor:", data); // 👀 Verifica si la tarea aparece aquí
+                console.log("Tareas obtenidas del servidor:", data); 
                 tareas = data; 
                 renderTareas();
             })
@@ -28,12 +28,12 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ descripcion: texto }) // Enviamos solo la descripción
+            body: JSON.stringify({ descripcion: texto }) // enviamos solo la descripción
         })
         .then(response => response.json())
         .then(data => {
             console.log("Respuesta del servidor:", data);
-            obtenerTareas(); // Refrescar la lista después de agregar
+            obtenerTareas(); 
         })
         .catch(error => console.error("Error al guardar la tarea:", error));
     }
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify({ id: id })
         })
         .then(response => response.json())
-        .then(() => obtenerTareas()) // Actualiza la lista después de eliminar
+        .then(() => obtenerTareas()) // actualiza la lista después de eliminar
         .catch(error => console.error("Error al eliminar la tarea:", error));
     }
 
@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
             body: JSON.stringify({ id: id, descripcion: nuevoTexto })
         })
         .then(response => response.json())
-        .then(() => obtenerTareas()) // Refresca la lista de tareas
+        .then(() => obtenerTareas()) 
         .catch(error => console.error("Error al editar la tarea:", error));
     }
 
@@ -70,10 +70,10 @@ document.addEventListener("DOMContentLoaded", function () {
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({ id: id, completada: estadoActual ? "0" : "1" }) // Cambia el estado
+            body: JSON.stringify({ id: id, completada: estadoActual ? "0" : "1" }) 
         })
         .then(response => response.json())
-        .then(() => obtenerTareas()) // Recarga las tareas actualizadas
+        .then(() => obtenerTareas())
         .catch(error => console.error("Error al completar la tarea:", error));
     }    
    
@@ -82,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const texto = inputTarea.value.trim();
         if (texto === "") return;
         guardarTarea(texto);
-        inputTarea.value = ""; // Limpia el input después de enviar la tarea
+        inputTarea.value = ""; 
     }
 
     function renderTareas() {
@@ -95,12 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
             const textoTarea = document.createElement("span");
             textoTarea.textContent = tarea.descripcion;
-    
-            // ✅ Convierte "1"/"0" a booleano correctamente
+
             const completada = tarea.completada === "1" || tarea.completada === 1;
             textoTarea.style.textDecoration = completada ? "line-through" : "none";
     
-            // Botón Editar ✏️
             const btnEditar = document.createElement("button");
             btnEditar.innerHTML = "✏️";
             btnEditar.classList.add("btn-edit");
@@ -111,7 +109,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
     
-            // Botón Eliminar ❌
             const btnEliminar = document.createElement("button");
             btnEliminar.innerHTML = "❌";
             btnEliminar.classList.add("btn-delete");
@@ -119,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 eliminarTarea(tarea.id);
             });
     
-            // Botón Completar ✔️
             const btnCompletar = document.createElement("button");
             btnCompletar.innerHTML = "✔️";
             btnCompletar.classList.add("btn-completar");
@@ -127,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 completarTarea(tarea.id, completada);
             });
     
-            // Contenedor de botones
+            // contenedor de botones
             const contenedorBotones = document.createElement("div");
             contenedorBotones.appendChild(btnEditar);
             contenedorBotones.appendChild(btnEliminar);
@@ -139,10 +135,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }    
     
-
-    // Cargar las tareas cuando la página se inicia
     obtenerTareas();
 
-    // Agregar evento al botón
     btnAgregar.addEventListener("click", agregarTarea);
 });

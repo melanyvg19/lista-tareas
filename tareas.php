@@ -3,7 +3,6 @@ include "db/conexion.php";
 
 header("Content-Type: application/json");
 
-// Manejo de peticiones
 $method = $_SERVER['REQUEST_METHOD'];
 
 switch ($method) {
@@ -19,14 +18,14 @@ switch ($method) {
 
     case "POST":
         $data = json_decode(file_get_contents("php://input"), true);
-            error_log("Datos recibidos: " . json_encode($data)); // Para ver qué datos llegan
+            error_log("Datos recibidos: " . json_encode($data)); // para ver que datos llegan
             
             if (!isset($data['descripcion']) || empty($data['descripcion'])) {
                 echo json_encode(["error" => "La descripción no puede estar vacía"]);
                 exit;
             }
         
-            $descripcion = $conn->real_escape_string($data['descripcion']); // Evitar SQL Injection
+            $descripcion = $conn->real_escape_string($data['descripcion']);
             $sql = "INSERT INTO tareas (descripcion) VALUES ('$descripcion')";
             
             if ($conn->query($sql)) {
@@ -63,6 +62,5 @@ switch ($method) {
         echo json_encode(["message" => "Tarea completada"]);
   
         break;
-        //http://localhost/listadetareas/
 }
 ?>
