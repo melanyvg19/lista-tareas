@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c2dded; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #d2caf3; 
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 400px;
+}
+
+
+.input-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #d4a373; 
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff9f3; 
+}
+
+button {
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+#btnAgregar {
+    background-color: #7780cb; 
+    color: white;
+}
+#btnAgregar:hover {
+    background-color: #a86f3c;
+}
+
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #fff5ee; 
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+
+.completed {
+    text-decoration: line-through;
+    color: gray;
+}
+
+
+.btn-completar {
+    background-color: #a3d9a5; 
+    color: white;
+    border-radius: 20px;
+
+}
+.btn-completar:hover {
+    background-color: #86c28b;
+}
+
+.btn-edit {
+    background-color: #f8d25b; 
+    color: white;
+    border-radius: 20px;
+}
+.btn-edit:hover {
+    background-color: #e4b93d;
+}
+
+.btn-delete {
+    background-color: #f59b9b; 
+    color: white;
+    border-radius: 20px;
+}
+.btn-delete:hover {
+    background-color: #e47b7b;
+}
+
+
+.botones {
+    display: flex;
+    gap: 5px;
+}
